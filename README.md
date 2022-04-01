@@ -1,14 +1,35 @@
-# Python Assignment Template
+# Space Shooters
 
-## This is where you will submit a python assignment.
+Welcome to Descend Us, the [Among Us](https://en.wikipedia.org/wiki/Among_Us) spinoff!
 
-1. You are required to commit and push your changes to your repository at the *end of every class that you work on your assignment* with your current code **even if you have not completed it**
-2. If you have additional resources such as images, organize them into folders.
-3. Feedback and grades for this assignment will be provided via pull request to this assignment.
 
-If working on the problems using repl with GitHub intergration, make sure to set your .replit file to run the practice file you want. For example, here's a file called `assignment.py` that will run from the root folder:
+## About the game
 
-```
-language="python3"
-run="python 'assignment.py'"
-```
+Now that you've been [ejected from the spaceship](https://en.wikipedia.org/wiki/Among_Us#Gameplay), you must use your parachute to descend back down to Earth.
+
+The catch is: there's asteroids in the way!
+
+You must navigate and dodge the asteroids. You are also given a laser gun to shoot down the asteroids!
+
+You start being 1000km away from Earth, with 100HP and 10 lasers.
+
+Every time you shoot down an asteroid, you get 50km to reaching Earth.
+
+If you just avoid the asteroids without shooting them, you descend at a rate of 5km/sec.
+
+If you get hit by an asteroid, you lose 5HP.
+
+You must grab the laser packs to replenish your laser supply.
+
+
+## Development
+
+### Resources
+
+Mockups of the UI are available [here](./mockups/).
+
+The version guide is available [here](./CHANGELOG.md).
+
+### Workflow
+
+Each version will be worked on in its own branch. When completed, it will be merged to the `dev` branch. When a full release is available, it will be merged to the `main` branch.
