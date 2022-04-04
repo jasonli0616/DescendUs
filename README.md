@@ -15,7 +15,7 @@ You start being 1000km away from Earth, with 100HP and 10 lasers.
 
 Every time you shoot down an asteroid, you get 50km to reaching Earth.
 
-If you just avoid the asteroids without shooting them, you descend at a rate of 5km/sec.
+If you just avoid the asteroids without shooting them, you descend at a rate of 1km/sec.
 
 If you get hit by an asteroid, you lose 5HP.
 
@@ -23,6 +23,10 @@ You must grab the laser packs to replenish your laser supply.
 
 
 ## Development
+
+### Features
+
+Features are defined in the [version guide](./CHANGELOG.md).
 
 ### Resources
 
