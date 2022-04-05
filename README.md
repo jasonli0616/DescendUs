@@ -22,6 +22,21 @@ If you get hit by an asteroid, you lose 5HP.
 You must grab the laser packs to replenish your laser supply.
 
 
+## How to run:
+
+1. [Install requirements](https://pip.pypa.io/en/stable/cli/pip_install/#install-requirement)
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Invoke Descend Us [as a module](https://docs.python.org/3/using/cmdline.html#cmdoption-m)
+
+```bash
+python -m DescendUs
+```
+
+
 ## Development
 
 ### Features
