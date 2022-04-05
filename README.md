@@ -1,4 +1,4 @@
-# Space Shooters
+# Descend Us
 
 Welcome to Descend Us, the [Among Us](https://en.wikipedia.org/wiki/Among_Us) spinoff!
 
