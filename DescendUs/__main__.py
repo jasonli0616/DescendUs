@@ -17,6 +17,10 @@ See CHANGELOG.md for features.
 
 import pygame
 
+from . import views
+
+from . import _globals
+
 
 def setup():
     """
@@ -32,21 +36,18 @@ def setup():
     pygame.time.Clock
         the application clock
 
-    int
-        frames per second
-
     """
     pygame.init()
-    WIDTH, HEIGHT = 400, 400
-    FPS = 60
 
     clock = pygame.time.Clock()
-    surface = pygame.display.set_mode((WIDTH, HEIGHT))
+    surface = pygame.display.set_mode((_globals.Window.WIDTH, _globals.Window.HEIGHT))
 
-    return surface, clock, FPS
+    pygame.display.set_caption('Descend Us')
+
+    return surface, clock
 
 
-def game_loop(surface: pygame.Surface, clock: pygame.time.Clock, FPS: int):
+def game_loop(surface: pygame.Surface, clock: pygame.time.Clock):
     """
     Main game loop.
 
@@ -58,9 +59,6 @@ def game_loop(surface: pygame.Surface, clock: pygame.time.Clock, FPS: int):
 
     clock: pygame.time.Clock
         the application clock
-
-    FPS: int
-        frames per second
 
     """
 
@@ -84,11 +82,14 @@ def game_loop(surface: pygame.Surface, clock: pygame.time.Clock, FPS: int):
         # Draw components to screen
         # --------------------
 
+        if not _globals.Game.view:
+            _globals.Game.view = views.Homepage()
+        _globals.Game.view.show(surface)
 
         # Refresh/frame rate
         # --------------------
         pygame.display.flip()
-        clock.tick(FPS)
+        clock.tick(_globals.Window.FPS)
 
 
     # Quit on game loop end
@@ -97,8 +98,8 @@ def game_loop(surface: pygame.Surface, clock: pygame.time.Clock, FPS: int):
 
 
 def main():
-    surface, clock, FPS = setup()
-    game_loop(surface, clock, FPS)
+    surface, clock = setup()
+    game_loop(surface, clock)
 
 
 if __name__ == '__main__':
