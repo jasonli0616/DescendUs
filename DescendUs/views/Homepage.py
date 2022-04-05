@@ -1,5 +1,6 @@
 import pygame
 import os
+import webbrowser
 
 from .. import objects
 from .. import _globals
@@ -65,6 +66,7 @@ class Homepage:
             # TODO: Handle play button press
             pass
 
-        if self.play_button.is_pressed(ev):
-            # TODO: Handle instructions button press
-            pass
+        # Open instructions page on button click
+        if self.instructions_button.is_pressed(ev):
+            instructions_path = os.path.join(_globals.Game.ASSETS_DIR, 'descendus.html')
+            webbrowser.open(f'file://{instructions_path}')

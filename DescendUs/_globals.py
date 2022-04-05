@@ -10,7 +10,7 @@ import os
 from . import views
 
 class Game:
-    ASSETS_DIR = os.path.join('DescendUs', 'assets')
+    ASSETS_DIR = os.path.join(os.getcwd() ,'DescendUs', 'assets')
 
     # This variable will be overwritten with the view to render.
     # It will determine which view is currently presented.
