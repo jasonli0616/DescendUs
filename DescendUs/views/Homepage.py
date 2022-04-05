@@ -1,7 +1,7 @@
 import pygame
 import os
 
-from ..objects.Button import Button
+from .. import objects
 from .. import _globals
 
 
@@ -49,12 +49,22 @@ class Homepage:
 
         surface.blit(rendered_title, title_position)
 
-        self.play_button = Button("Play")
-        self.play_button.draw(surface, (self.homepage.centerx - (self.play_button.get_width() / 2), self.homepage.centery))
+        # Play button
+        self.play_button = objects.Button("Play")
+        self.play_button.draw(surface, (self.homepage.centerx - (self.play_button.get_width() / 2), self.homepage.centery - 40))
+
+        # Instructions button
+        self.instructions_button = objects.Button("Instructions")
+        self.instructions_button.draw(surface, (self.homepage.centerx - (self.instructions_button.get_width() / 2), self.homepage.centery + 40))
 
 
     def _handle_event(self):
         ev = pygame.event.poll()
 
         if self.play_button.is_pressed(ev):
-            print('pressed')
+            # TODO: Handle play button press
+            pass
+
+        if self.play_button.is_pressed(ev):
+            # TODO: Handle instructions button press
+            pass

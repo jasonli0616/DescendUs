@@ -4,7 +4,7 @@ from .. import _globals
 
 class Button:
 
-    def __init__(self, text):
+    def __init__(self, text, position=None):
         """
         Create a button.
 
@@ -13,9 +13,15 @@ class Button:
 
         text: str
             the text that is displayed
+
+        position: list[int | float, int | float]
+            optional: the position that the button is at
         """
 
         self.rendered_text = _globals.Font.TEXT_FONT.render(text, False, _globals.Color.WHITE, _globals.Color.GRAY)
+
+        if position:
+            self.position = position
 
 
     def draw(self, surface: pygame.Surface, position):
@@ -29,9 +35,10 @@ class Button:
             the surface to draw the button onto
 
         position: list[int | float, int | float]
-            the position that the circle is at
+            the position that the button is at
         """
 
+        self.position = position
         surface.blit(self.rendered_text, position)
 
 
@@ -47,7 +54,7 @@ class Button:
         """
         Check the events, and return whether or not the button is pressed.
 
-        Counts a press as mouse up, not mouse down.
+        When mouse click is released, return whether the mouse position is in the range of the button.
 
         Parameters
         ----------
@@ -64,4 +71,8 @@ class Button:
 
         if ev.type == pygame.MOUSEBUTTONUP:
             mouse_position = pygame.mouse.get_pos()
-            # TODO: Check mouse collision
+
+            button_x_range = range(int(self.position[0]), int(self.position[0]) + self.get_width())
+            button_y_range = range(int(self.position[1]), int(self.position[1]) + self.get_height())
+
+            return (mouse_position[0] in button_x_range) and (mouse_position[1] in button_y_range)

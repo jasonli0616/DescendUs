@@ -18,7 +18,6 @@ See CHANGELOG.md for features.
 import pygame
 
 from . import views
-
 from . import _globals
 
 
@@ -84,6 +83,7 @@ def game_loop(surface: pygame.Surface, clock: pygame.time.Clock):
 
         if not _globals.Game.view:
             _globals.Game.view = views.Homepage()
+
         _globals.Game.view.show(surface)
 
         # Refresh/frame rate
