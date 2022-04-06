@@ -85,8 +85,12 @@ class _Gun:
         to increase difficulty.
 
         Formula:
-        (mouse x axis / gun x axis) * 100
+        (mouse x-axis / gun x-axis) * 80
+
+        The last numeric value (80) changes how sensitive the
+        tracking is. 80 was chosen completely based on how smooth
+        it feels to the user.
         """
         mouse_position = pygame.mouse.get_pos()
 
-        return (mouse_position[0] / self.position[0]) * 100
+        return (mouse_position[0] / self.position[0]) * 80
