@@ -7,8 +7,6 @@ They are stored in its own module to prevent circular imports.
 import pygame
 import os
 
-from . import views
-
 class Game:
     ASSETS_DIR = os.path.join(os.getcwd() ,'DescendUs', 'assets')
 

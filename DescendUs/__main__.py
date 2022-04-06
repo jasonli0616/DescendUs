@@ -74,11 +74,7 @@ def game_loop(surface: pygame.Surface, clock: pygame.time.Clock):
             break
 
 
-        # Game logic
-        # --------------------
-
-
-        # Draw components to screen
+        # Display view
         # --------------------
 
         if not _globals.Game.view:
