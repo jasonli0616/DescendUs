@@ -2,6 +2,7 @@ import pygame
 import os
 
 from .. import _globals
+from .. import objects
 
 class Player:
 
@@ -15,6 +16,8 @@ class Player:
         text: str
             the text that is displayed
         """
+
+        self.ammo = _globals.Game.ammo
 
         self.image = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'player.png'))
 
@@ -40,6 +43,10 @@ class Player:
         position: list[int | float, int | float]
             the position that the button is at
         """
+
+        mouse_x = pygame.mouse.get_pos()[0]
+
+        self.position = (mouse_x if mouse_x > 0 else 1, self.position[1])
 
         self.surface.blit(self.image, self.position)
         self.gun.draw(self.surface, (self.position[0], self.get_height() / 3))
@@ -67,30 +74,19 @@ class _Gun:
     def draw(self, surface: pygame.Surface, position):
         """
         Draw in the laser gun.
-        
-        The angle of the gun is calculated in self._get_angle()
         """
         self.position = position
-
-        self.image = pygame.transform.rotate(self.image, self._get_angle())
 
         surface.blit(self.image, position)
 
 
-    def _get_angle(self):
+    def shoot_laser(self):
         """
-        Calculate the angle of the gun.
-
-        It should follow the user's mouse, without being exact
-        to increase difficulty.
-
-        Formula:
-        (mouse x-axis / gun x-axis) * 80
-
-        The last numeric value (80) changes how sensitive the
-        tracking is. 80 was chosen completely based on how smooth
-        it feels to the user.
+        Shoot the laser towards the mouse position.
         """
+
         mouse_position = pygame.mouse.get_pos()
+        
+        laser = objects.Laser(self.position, mouse_position)
 
-        return (mouse_position[0] / self.position[0]) * 80
+        _globals.Laser.lasers.append(laser)

@@ -43,9 +43,19 @@ class Game:
             the surface to render the components onto
         """
 
-        player = objects.Player(surface, self.rect)
-        player.draw()
+        self.player = objects.Player(surface, self.rect)
+        self.player.draw()
+
+        for laser in _globals.Laser.lasers:
+            laser.draw(surface)
 
 
     def _handle_event(self):
         ev = pygame.event.poll()
+
+        if ev.type == pygame.MOUSEBUTTONUP:
+
+            # On mouse click, shoot laser
+            if self.player.ammo > 0:
+                self.player.gun.shoot_laser()
+                _globals.Game.ammo -= 1
