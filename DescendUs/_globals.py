@@ -14,8 +14,8 @@ class Game:
     # It will determine which view is currently presented.
     view = None
 
-    # This variable will be overwritten by the view.
     ammo = 10
+    lasers = []
 
 class Window:
     WIDTH, HEIGHT = 1000, 600
@@ -31,6 +31,3 @@ class Font:
 
     TITLE_FONT = pygame.font.Font(os.path.join(Game.ASSETS_DIR, 'RubikGlitch-Regular.ttf'), 100)
     TEXT_FONT = pygame.font.Font(os.path.join(Game.ASSETS_DIR, 'Oswald-Light.ttf'), 30)
-
-class Laser:
-    lasers = []

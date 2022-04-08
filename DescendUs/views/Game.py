@@ -1,5 +1,6 @@
 import pygame
 import os
+import random
 
 from .. import objects
 from .. import _globals
@@ -46,8 +47,11 @@ class Game:
         self.player = objects.Player(surface, self.rect)
         self.player.draw()
 
-        for laser in _globals.Laser.lasers:
+        for laser in _globals.Game.lasers:
             laser.draw(surface)
+
+        rendered_ammo_text = _globals.Font.TEXT_FONT.render(f'Ammo: {_globals.Game.ammo}', False, _globals.Color.WHITE)
+        surface.blit(rendered_ammo_text, ( _globals.Window.WIDTH - rendered_ammo_text.get_width(), 0 ))
 
 
     def _handle_event(self):
@@ -59,3 +63,6 @@ class Game:
             if self.player.ammo > 0:
                 self.player.gun.shoot_laser()
                 _globals.Game.ammo -= 1
+
+
+    def _generate_collidable(self):

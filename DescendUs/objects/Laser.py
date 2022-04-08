@@ -28,7 +28,7 @@ class Laser:
         self.position = (self.mouse_position[0], self.position[1] + 10)
 
         if (self.position[1] > _globals.Window.HEIGHT):
-            _globals.Laser.lasers.remove(self)
+            _globals.Game.lasers.remove(self)
 
         rect_surface = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'laser.png'))
 

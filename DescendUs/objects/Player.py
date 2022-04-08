@@ -89,4 +89,4 @@ class _Gun:
         
         laser = objects.Laser(self.position, mouse_position)
 
-        _globals.Laser.lasers.append(laser)
+        _globals.Game.lasers.append(laser)
