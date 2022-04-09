@@ -7,14 +7,16 @@ They are stored in its own module to prevent circular imports.
 import pygame
 import os
 
-from . import views
-
 class Game:
     ASSETS_DIR = os.path.join(os.getcwd() ,'DescendUs', 'assets')
 
     # This variable will be overwritten with the view to render.
     # It will determine which view is currently presented.
     view = None
+
+    ammo = 10
+    lasers = []
+    collidables = []
 
 class Window:
     WIDTH, HEIGHT = 1000, 600
@@ -23,6 +25,7 @@ class Window:
 class Color:
     WHITE = (255, 255, 255)
     GRAY = (115, 115, 115)
+    RED = (255, 0, 0)
 
 class Font:
     pygame.font.init()

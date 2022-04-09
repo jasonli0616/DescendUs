@@ -4,6 +4,7 @@ import webbrowser
 
 from .. import objects
 from .. import _globals
+from .. import views
 
 
 class Homepage:
@@ -62,9 +63,9 @@ class Homepage:
     def _handle_event(self):
         ev = pygame.event.poll()
 
+        # Display game view on button click
         if self.play_button.is_pressed(ev):
-            # TODO: Handle play button press
-            pass
+            _globals.Game.view = views.Game()
 
         # Open instructions page on button click
         if self.instructions_button.is_pressed(ev):
