@@ -11,6 +11,16 @@ class Laser:
         Create a laser.
 
         Determine the shooting angle using mouse angle.
+
+        Parameters
+        ----------
+
+        start_position: list[int | float, int | float]
+            the position that the laser starts at
+
+        mouse_position: list[int | float, int | float]
+            the position that the mouse is at, aka where the
+            laser will move to
         """
 
         self.mouse_position = mouse_position
@@ -27,6 +37,12 @@ class Laser:
         Draw the laser to the screen.
 
         Move the laser closer to the mouse point every frame.
+
+        Parameters
+        ----------
+
+        surface: pygame.Surface
+            the surface to draw the button onto
         """
 
         self.position = (self.mouse_position[0], self.position[1] + self.speed)

@@ -5,8 +5,27 @@ from ... import _globals
 from ... import objects
 
 class _Collidable(ABC):
+    """
+    Abstract class of all collidable objects.
+
+    Children:
+        - DescendUs.objects.Collidable.Asteroid
+        - DescendUs.objects.Collidable.Ammo
+    """
 
     def __init__(self, image: pygame.Surface, position):
+        """
+        Create an collidable object.
+
+        Parameters
+        ----------
+
+        image: pygame.Surface
+            the image of the collidable
+
+        position: list[int | float, int | float]
+            the position of the collidable
+        """
 
         self.position = position
         self.image = image
@@ -16,6 +35,12 @@ class _Collidable(ABC):
 
 
     def draw(self, surface: pygame.Surface):
+        """
+        Draw the collidable onto the screen.
+
+        surface: pygame.Surface
+            the surface to draw the collidable onto
+        """
 
         self.position = (self.position[0], self.position[1] - self.speed)
 
@@ -38,4 +63,20 @@ class _Collidable(ABC):
 
 
     def has_collided(self, player: objects.Player):
+        """
+        Check if the player has collided with the player.
+
+        Parameters
+        ----------
+
+        player: DescendUs.objects.Player
+            the player that has collided with the collidable
+
+        Returns
+        ----------
+
+        bool
+            whether the player has collided with the collidable
+        """
+
         return self.rect.colliderect(player.rect)

@@ -6,6 +6,10 @@ from .. import _globals
 class Earth:
 
     def __init__(self):
+        """
+        Display the Earth.
+        """
+
         self.image = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'earth.png'))
         self.position = _globals.Earth.REGULAR_POSITION
 

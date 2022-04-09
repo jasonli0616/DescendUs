@@ -8,6 +8,7 @@ from ... import _globals
 class Asteroid(_Collidable):
 
     def __init__(self, position):
+
         image = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'asteroid.png'))
         self.size = random.randint(50, 200)
         image = pygame.transform.scale(image, (self.size, self.size))
@@ -34,6 +35,10 @@ class Asteroid(_Collidable):
 
 
     def collided_image_change(self):
+        """
+        Change the asteroid image to explosion on collision.
+        """
+
         self.can_collide = False
         self.image = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'explosion.png'))
         self.image = pygame.transform.scale(self.image, (self.size, self.size))

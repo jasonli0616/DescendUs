@@ -114,6 +114,15 @@ class _Gun:
     def draw(self, surface: pygame.Surface, position):
         """
         Draw in the laser gun.
+
+        Parameters
+        ----------
+
+        surface: pygame.Surface
+            the surface to draw the player onto
+
+        position: list[int | float, int | float]
+            the position of the player
         """
         self.position = position
 

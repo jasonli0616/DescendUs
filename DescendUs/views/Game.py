@@ -169,6 +169,12 @@ class Game:
         Random chance once per frame (60 times per second).
 
         Does not generate if the player is close to Earth (20 km).
+
+        Returns
+        ----------
+        
+        DescendUs.objects.Collidable.Asteroid | DescendUs.objects.Collidable.Ammo | None
+            the collidable, if randomly generated, or none
         """
 
         if _globals.Game.km_to_earth > 20 and not _globals.Game.lost:
