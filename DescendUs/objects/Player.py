@@ -46,6 +46,8 @@ class Player:
 
         if _globals.Game.won:
             self._won_position()
+        elif _globals.Game.lost:
+            self._lost_position()
         else:
             mouse_x = pygame.mouse.get_pos()[0]
             self.position = (mouse_x if mouse_x > 0 else 1, self.position[1])
@@ -87,6 +89,15 @@ class Player:
         # Vertical
         if (self.position[1] < _globals.Earth.WON_POSITION[1] - self.get_height() + 7):
             self.position = ( self.position[0], self.position[1] + speed )
+
+
+    def _lost_position(self):
+        """
+        If the game has been lost, move player out of the screen smoothly.
+        """
+
+        speed = 1
+        self.position = ( self.position[0], self.position[1] - speed )
 
 
 class _Gun:
