@@ -45,11 +45,15 @@ class Homepage:
             the surface to render the components onto
         """
 
-        title_text = 'Descend Us'
-        rendered_title = _globals.Font.TITLE_FONT.render(title_text, False, _globals.Color.WHITE)
+        rendered_title = _globals.Font.TITLE_FONT.render('Descend Us', False, _globals.Color.WHITE)
         title_position = (self.homepage.centerx - (rendered_title.get_width() / 2), 0)
 
         surface.blit(rendered_title, title_position)
+
+        rendered_credit = _globals.Font.TEXT_FONT.render('by: Jason Li', False, _globals.Color.WHITE)
+        credit_position = (self.homepage.centerx - (rendered_credit.get_width() / 2), 100)
+
+        surface.blit(rendered_credit, credit_position)
 
         # Play button
         self.play_button = objects.Button("Play")

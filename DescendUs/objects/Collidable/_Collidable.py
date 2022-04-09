@@ -23,7 +23,7 @@ class _Collidable(ABC):
         self.rect = pygame.Rect(self.position, (self.get_width(), self.get_height()))
 
         # Remove when out of screen
-        if self.position[1] < 0:
+        if self.position[1] < 0 - self.get_height():
             _globals.Game.collidables.remove(self)
 
         surface.blit(self.image, self.position)
@@ -38,5 +38,4 @@ class _Collidable(ABC):
 
 
     def has_collided(self, player: objects.Player):
-        collided = self.rect.colliderect(player.rect)
-        return collided
+        return self.rect.colliderect(player.rect)

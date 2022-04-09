@@ -46,6 +46,8 @@ class Player:
 
         if _globals.Game.won:
             self._won_position()
+        elif _globals.Game.lost:
+            self._lost_position()
         else:
             mouse_x = pygame.mouse.get_pos()[0]
             self.position = (mouse_x if mouse_x > 0 else 1, self.position[1])
@@ -64,6 +66,10 @@ class Player:
     def get_height(self):
         return self.image.get_height()
 
+
+    def has_died(self):
+        return _globals.Game.hp <= 0
+
     
     def _won_position(self):
         """
@@ -73,16 +79,25 @@ class Player:
         speed = 1
 
         # Horizontal
-        if not ( (((_globals.Window.WIDTH / 2) - self.get_width()/2) + 2) < self.position[0] < (((_globals.Window.WIDTH / 2) - self.get_width()/2) + 2) ):
+        if not ( (((_globals.Window.WIDTH / 2) - self.get_width()/2) - 10) < self.position[0] < (((_globals.Window.WIDTH / 2) - self.get_width()/2) + 10) ):
 
             if self.position[0] < _globals.Window.WIDTH / 2 - self.get_width()/2:
-                self.position = ( self.position[0] + speed*2, self.position[1] )
+                self.position = ( self.position[0] + speed*5, self.position[1] )
             elif self.position[0] > _globals.Window.WIDTH / 2 - self.get_width()/2:
-                self.position = ( self.position[0] - speed*2, self.position[1] )
+                self.position = ( self.position[0] - speed*5, self.position[1] )
 
         # Vertical
         if (self.position[1] < _globals.Earth.WON_POSITION[1] - self.get_height() + 7):
             self.position = ( self.position[0], self.position[1] + speed )
+
+
+    def _lost_position(self):
+        """
+        If the game has been lost, move player out of the screen smoothly.
+        """
+
+        speed = 1
+        self.position = ( self.position[0], self.position[1] - speed )
 
 
 class _Gun:
@@ -110,7 +125,6 @@ class _Gun:
         Shoot the laser towards the mouse position.
         """
 
-        if not _globals.Game.won:
-            mouse_position = pygame.mouse.get_pos()
-            laser = objects.Laser(self.position, mouse_position)
-            _globals.Game.lasers.append(laser)
+        mouse_position = pygame.mouse.get_pos()
+        laser = objects.Laser(self.position, mouse_position)
+        _globals.Game.lasers.append(laser)
