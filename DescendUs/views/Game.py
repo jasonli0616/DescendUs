@@ -125,15 +125,16 @@ class Game:
 
             # Handle collisions
             if collidable.has_collided(self.player):
-                _globals.Game.collidables.remove(collidable)
 
                 # Regenerate ammo
                 if isinstance(collidable, objects.Collidable.Ammo):
                     _globals.Game.ammo += 10
+                    _globals.Game.collidables.remove(collidable)
 
                 # Hit asteroid
-                elif isinstance(collidable, objects.Collidable.Asteroid):
+                elif isinstance(collidable, objects.Collidable.Asteroid) and collidable.can_collide:
                     _globals.Game.hp -= 5
+                    collidable.collided_image_change()
 
             # Laser shot asteroid
             if isinstance(collidable, objects.Collidable.Asteroid):

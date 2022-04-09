@@ -77,12 +77,12 @@ class Player:
         speed = 1
 
         # Horizontal
-        if not ( (((_globals.Window.WIDTH / 2) - self.get_width()/2) + 2) < self.position[0] < (((_globals.Window.WIDTH / 2) - self.get_width()/2) + 2) ):
+        if not ( (((_globals.Window.WIDTH / 2) - self.get_width()/2) - 10) < self.position[0] < (((_globals.Window.WIDTH / 2) - self.get_width()/2) + 10) ):
 
             if self.position[0] < _globals.Window.WIDTH / 2 - self.get_width()/2:
-                self.position = ( self.position[0] + speed*2, self.position[1] )
+                self.position = ( self.position[0] + speed*5, self.position[1] )
             elif self.position[0] > _globals.Window.WIDTH / 2 - self.get_width()/2:
-                self.position = ( self.position[0] - speed*2, self.position[1] )
+                self.position = ( self.position[0] - speed*5, self.position[1] )
 
         # Vertical
         if (self.position[1] < _globals.Earth.WON_POSITION[1] - self.get_height() + 7):
