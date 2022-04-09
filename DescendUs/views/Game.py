@@ -137,7 +137,7 @@ class Game:
                     collidable.collided_image_change()
 
             # Laser shot asteroid
-            if isinstance(collidable, objects.Collidable.Asteroid):
+            if isinstance(collidable, objects.Collidable.Asteroid) and collidable.can_collide:
                 asteroid_shot_laser = collidable.has_been_shot()
                 if asteroid_shot_laser:
 
