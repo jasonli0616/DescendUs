@@ -17,6 +17,7 @@ class Game:
     ammo = 10
     lasers = []
     collidables = []
+    km_to_earth = 1000
 
 class Window:
     WIDTH, HEIGHT = 1000, 600

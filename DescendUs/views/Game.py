@@ -56,6 +56,10 @@ class Game:
         rendered_ammo_text = _globals.Font.TEXT_FONT.render(f'Ammo: {_globals.Game.ammo}', False, _globals.Color.WHITE)
         surface.blit(rendered_ammo_text, ( _globals.Window.WIDTH - rendered_ammo_text.get_width(), 0 ))
 
+        # Display km to Earth
+        rendered_km_text = _globals.Font.TEXT_FONT.render(f'KM to Earth: {int(_globals.Game.km_to_earth)}', False, _globals.Color.WHITE)
+        surface.blit(rendered_km_text, (0, 0))
+
         # Generate collidable (asteroid / ammo)
         new_collidable = self._generate_collidable()
         if new_collidable:
@@ -89,16 +93,26 @@ class Game:
 
                 # Hit asteroid
                 elif isinstance(collidable, objects.Collidable.Asteroid):
-                    # Handle death
+                    # Handle game lose
                     pass
 
             # Laser shot asteroid
             if isinstance(collidable, objects.Collidable.Asteroid):
                 asteroid_shot_laser = collidable.has_been_shot()
                 if asteroid_shot_laser:
-                    # Handle laser shooting asteroid
+
                     _globals.Game.collidables.remove(collidable)
                     _globals.Game.lasers.remove(asteroid_shot_laser)
+
+                    # Descend 50 km
+                    _globals.Game.km_to_earth -= 50
+
+        # Descend at regular pace
+        _globals.Game.km_to_earth -= 1 / _globals.Window.FPS
+
+        if _globals.Game.km_to_earth < 0:
+            # Handle game win
+            pass
 
 
     def _generate_collidable(self):
