@@ -39,16 +39,16 @@ Working features:
 
 Continued development of game functionality.
 
-- Ability to randomly generate ammo
-- Ability to pick up ammo (using collision)
-- Ability to shoot laser
+- ~~Ability to randomly generate ammo~~ Moved to v0.0.2
+- ~~Ability to pick up ammo (using collision)~~ Moved to v0.0.2
+- ~~Ability to shoot laser~~ Moved to v0.0.2
 
 
 ### version 0.0.4
 
 Continued development of game functionality.
 
-- Ability to randomly generate asteroids
+- ~~Ability to randomly generate asteroids~~ Moved to v0.0.2
 - Ability to collide with asteroid
 - Ability to lose game
 
