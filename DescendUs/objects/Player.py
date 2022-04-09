@@ -48,6 +48,9 @@ class Player:
 
         self.position = (mouse_x if mouse_x > 0 else 1, self.position[1])
 
+        # Adjust rect to new position
+        self.rect = pygame.Rect(self.position, (self.get_width(), self.get_height()))
+
         self.surface.blit(self.image, self.position)
         self.gun.draw(self.surface, (self.position[0], self.get_height() / 3))
 

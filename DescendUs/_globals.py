@@ -16,6 +16,7 @@ class Game:
 
     ammo = 10
     lasers = []
+    collidables = []
 
 class Window:
     WIDTH, HEIGHT = 1000, 600
