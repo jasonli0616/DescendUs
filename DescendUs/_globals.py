@@ -14,9 +14,13 @@ class Game:
     # It will determine which view is currently presented.
     view = None
 
+    player = None
+
     ammo = 10
     lasers = []
     collidables = []
+    km_to_earth = 1000
+    won = False
 
 class Window:
     WIDTH, HEIGHT = 1000, 600
@@ -32,3 +36,10 @@ class Font:
 
     TITLE_FONT = pygame.font.Font(os.path.join(Game.ASSETS_DIR, 'RubikGlitch-Regular.ttf'), 100)
     TEXT_FONT = pygame.font.Font(os.path.join(Game.ASSETS_DIR, 'Oswald-Light.ttf'), 30)
+
+
+class Earth:
+    REGULAR_POSITION = (0, 450)
+    WON_POSITION = (0, 300)
+
+    earth = None

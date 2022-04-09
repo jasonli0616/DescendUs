@@ -1,5 +1,6 @@
 import pygame
 import os
+import random
 
 from ._Collidable import _Collidable
 from ... import _globals
@@ -8,6 +9,8 @@ class Asteroid(_Collidable):
 
     def __init__(self, position):
         image = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'asteroid.png'))
+        size = random.randint(50, 200)
+        image = pygame.transform.scale(image, (size, size))
         super().__init__(image, position)
 
 
