@@ -4,6 +4,7 @@ import random
 
 from .. import objects
 from .. import _globals
+from .. import views
 
 
 class Game:
@@ -70,6 +71,10 @@ class Game:
         rendered_km_text = _globals.Font.TEXT_FONT.render(f'KM to Earth: {int(_globals.Game.km_to_earth)}', False, _globals.Color.WHITE)
         surface.blit(rendered_km_text, (0, 0))
 
+        # Display HP
+        rendered_hp_text = _globals.Font.TEXT_FONT.render(f'HP: {_globals.Game.hp}', False, _globals.Color.WHITE)
+        surface.blit(rendered_hp_text, (0, 30))
+
         # Generate collidable (asteroid / ammo)
         new_collidable = self._generate_collidable()
         if new_collidable:
@@ -84,6 +89,16 @@ class Game:
             win_image = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'win_screen.png'))
             surface.blit(win_image, ( 0 + (surface.get_width() - win_image.get_width())/2, 400 ))
 
+        # Display lose screen
+        if _globals.Game.lost:
+            lose_image = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'lose_screen.png'))
+            surface.blit(lose_image, ( 0 + (surface.get_width() - lose_image.get_width())/2, 400 ))
+
+        # Display play again screen
+        if _globals.Game.won or _globals.Game.lost:
+            self.play_again_button = objects.Button('Play again?')
+            self.play_again_button.draw(surface, (surface.get_width()/2 - self.play_again_button.get_width()/2, 325))
+
 
     def _handle_event(self):
         ev = pygame.event.poll()
@@ -91,9 +106,19 @@ class Game:
         if ev.type == pygame.MOUSEBUTTONUP:
 
             # On mouse click, shoot laser
-            if self.player.ammo > 0:
+            if self.player.ammo > 0 and (not _globals.Game.won and not _globals.Game.lost):
                 self.player.gun.shoot_laser()
                 _globals.Game.ammo -= 1
+
+            # Handle play again
+            try:
+                if self.play_again_button.is_pressed(ev):
+                    self.clear_global_variables()
+                    _globals.Game.view = views.Homepage()
+                    return
+            except AttributeError:
+                # If button does not exist, ignore
+                pass
 
 
         for collidable in _globals.Game.collidables:
@@ -108,8 +133,7 @@ class Game:
 
                 # Hit asteroid
                 elif isinstance(collidable, objects.Collidable.Asteroid):
-                    # Handle game lose
-                    pass
+                    _globals.Game.hp -= 5
 
             # Laser shot asteroid
             if isinstance(collidable, objects.Collidable.Asteroid):
@@ -123,10 +147,14 @@ class Game:
                     _globals.Game.km_to_earth -= 50
 
         # Descend at regular pace
-        _globals.Game.km_to_earth -= 1 / _globals.Window.FPS
+        if not _globals.Game.won and not _globals.Game.lost:
+            _globals.Game.km_to_earth -= 1 / _globals.Window.FPS
 
         if _globals.Game.km_to_earth <= 0:
             self.win()
+
+        if self.player.has_died():
+            self.lose()
 
 
     def _generate_collidable(self):
@@ -142,7 +170,7 @@ class Game:
         Does not generate if the player is close to Earth (20 km).
         """
 
-        if _globals.Game.km_to_earth > 20:
+        if _globals.Game.km_to_earth > 20 and not _globals.Game.lost:
 
             if random.randint(0, 50) == 1:
                 return objects.Collidable.Asteroid( (random.randint(0, _globals.Window.WIDTH), _globals.Window.HEIGHT) )
@@ -157,3 +185,30 @@ class Game:
 
         _globals.Game.km_to_earth = 0
         _globals.Game.won = True
+
+
+    def lose(self):
+        """
+        Handle game loss.
+        """
+
+        _globals.Game.hp = 0
+        _globals.Game.lost = True
+
+    
+    @staticmethod
+    def clear_global_variables():
+        """
+        Restore all global variables to the original.
+        """
+
+        _globals.Game.view = None
+        _globals.Game.player = None
+        _globals.Game.ammo = 10
+        _globals.Game.hp = 100
+        _globals.Game.lasers = []
+        _globals.Game.collidables = []
+        _globals.Game.km_to_earth = 1000
+        _globals.Game.won = False
+        _globals.Game.lost = False
+        _globals.Earth.earth = None

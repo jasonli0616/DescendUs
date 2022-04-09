@@ -17,10 +17,12 @@ class Game:
     player = None
 
     ammo = 10
+    hp = 100
     lasers = []
     collidables = []
     km_to_earth = 1000
     won = False
+    lost = False
 
 class Window:
     WIDTH, HEIGHT = 1000, 600

@@ -64,6 +64,10 @@ class Player:
     def get_height(self):
         return self.image.get_height()
 
+
+    def has_died(self):
+        return _globals.Game.hp <= 0
+
     
     def _won_position(self):
         """
@@ -110,7 +114,6 @@ class _Gun:
         Shoot the laser towards the mouse position.
         """
 
-        if not _globals.Game.won:
-            mouse_position = pygame.mouse.get_pos()
-            laser = objects.Laser(self.position, mouse_position)
-            _globals.Game.lasers.append(laser)
+        mouse_position = pygame.mouse.get_pos()
+        laser = objects.Laser(self.position, mouse_position)
+        _globals.Game.lasers.append(laser)
