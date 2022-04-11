@@ -109,24 +109,12 @@ class Game:
     def _handle_event(self):
         ev = pygame.event.poll()
 
-        if ev.type == pygame.MOUSEBUTTONUP:
+        if ev.type == pygame.MOUSEBUTTONDOWN:
 
             # On mouse click, shoot laser
             if self.player.ammo > 0 and (not _globals.Game.won and not _globals.Game.lost):
                 self.player.gun.shoot_laser()
                 _globals.Game.ammo -= 1
-
-            # Handle play again
-            try:
-                if self.play_again_button.is_pressed(ev):
-                    pygame.mixer.music.unload()
-                    self.clear_global_variables()
-                    _globals.Game.view = views.Homepage()
-                    return
-            except AttributeError:
-                # If button does not exist, ignore
-                pass
-
 
         for collidable in _globals.Game.collidables:
 
@@ -163,6 +151,18 @@ class Game:
 
         if self.player.has_died():
             self._lose()
+
+
+        # Handle play again
+        try:
+            if self.play_again_button.is_pressed(ev):
+                pygame.mixer.music.unload()
+                self.clear_global_variables()
+                _globals.Game.view = views.Homepage()
+                return
+        except AttributeError:
+            # If button does not exist, ignore
+            pass
 
 
     def _generate_collidable(self):
