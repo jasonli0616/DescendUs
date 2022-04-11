@@ -11,6 +11,8 @@ class _Collidable(ABC):
     Children:
         - DescendUs.objects.Collidable.Asteroid
         - DescendUs.objects.Collidable.Ammo
+
+    All collidables are stored in DescendUs._globals.Game.collidables
     """
 
     def __init__(self, image: pygame.Surface, position):

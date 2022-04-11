@@ -10,6 +10,10 @@ from .. import views
 class Homepage:
 
     def __init__(self):
+        """
+        Change view to homepage.
+        """
+
         self.homepage = pygame.Rect(0, 0, _globals.Window.WIDTH, _globals.Window.HEIGHT)
         self.background = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'titlescreen.png'))
 

@@ -1,10 +1,14 @@
 import pygame
 import os
-import math
 
 from .. import _globals
 
 class Laser:
+    """
+    Represents a laser.
+
+    All lasers are stored in DescendUs._globals.Game.lasers
+    """
 
     def __init__(self, start_position, mouse_position):
         """
@@ -42,7 +46,7 @@ class Laser:
         ----------
 
         surface: pygame.Surface
-            the surface to draw the button onto
+            the surface to draw the laser onto
         """
 
         self.position = (self.mouse_position[0], self.position[1] + self.speed)

@@ -10,6 +10,10 @@ from .. import views
 class Game:
 
     def __init__(self):
+        """
+        Change view to game.
+        """
+
         self.rect = pygame.Rect(0, 0, _globals.Window.WIDTH, _globals.Window.HEIGHT)
         self.background = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'background.png'))
 

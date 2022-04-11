@@ -3,6 +3,9 @@ import pygame
 from .. import _globals
 
 class Button:
+    """
+    Represents a clickable button, with text.
+    """
 
     def __init__(self, text, position=None):
         """

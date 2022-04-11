@@ -4,10 +4,13 @@ import os
 from .. import _globals
 
 class Earth:
+    """
+    Represents the Earth.
+    """
 
     def __init__(self):
         """
-        Display the Earth.
+        Create an instance of Earth.
         """
 
         self.image = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'earth.png'))

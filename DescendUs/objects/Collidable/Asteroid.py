@@ -6,6 +6,13 @@ from ._Collidable import _Collidable
 from ... import _globals
 
 class Asteroid(_Collidable):
+    """
+    Represents an asteroid.
+
+    Inherits from Collidable abstract class.
+
+    All collidables are stored in DescendUs._globals.Game.collidables
+    """
 
     def __init__(self, position):
 

@@ -5,6 +5,9 @@ from .. import _globals
 from .. import objects
 
 class Player:
+    """
+    Represents the player of the game.
+    """
 
     def __init__(self, surface: pygame.Surface, page: pygame.Rect):
         """
@@ -32,16 +35,16 @@ class Player:
 
     def draw(self):
         """
-        Draw the button to the screen.
+        Draw the player to the screen.
 
         Parameters
         ----------
 
         surface: pygame.Surface
-            the surface to draw the button onto
+            the surface to draw the player onto
 
         position: list[int | float, int | float]
-            the position that the button is at
+            the position that the player is at
         """
 
         if _globals.Game.won:
