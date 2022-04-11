@@ -12,11 +12,11 @@ Second working (beta) version of Descend Us.
 Upgrades from version 0.1.0:
 - Bug fixes
 - Features added
-    - Cutscenes (crewmate ejected)
-    - Animations
+    - ~~Cutscenes (crewmate ejected)~~ **Removed due to time**
+    - ~~Animations~~ **Removed due to time**
     - Music and sound effects
 
-Minor updates (0.1.x) will be used to develop these new changes.
+~~Minor updates (0.1.x) will be used to develop these new changes.~~
 
 ### version 0.1.0
 
@@ -39,16 +39,16 @@ Working features:
 
 Continued development of game functionality.
 
-- ~~Ability to randomly generate ammo~~ Moved to v0.0.2
-- ~~Ability to pick up ammo (using collision)~~ Moved to v0.0.2
-- ~~Ability to shoot laser~~ Moved to v0.0.2
+- ~~Ability to randomly generate ammo~~ **Moved to v0.0.2**
+- ~~Ability to pick up ammo (using collision)~~ **Moved to v0.0.2**
+- ~~Ability to shoot laser~~ **Moved to v0.0.2**
 
 
 ### version 0.0.4
 
 Continued development of game functionality.
 
-- ~~Ability to randomly generate asteroids~~ Moved to v0.0.2
+- ~~Ability to randomly generate asteroids~~ **Moved to v0.0.2**
 - Ability to collide with asteroid
 - Ability to lose game
 
