@@ -5,12 +5,12 @@ Purpose:     A description of your program goes here.
 
 Author:      Jason Li
 Created:     4-Apr-2022
-Completed:     
+Completed:   10-Apr-2022
 ---------------------------------------------------------------------------------------
-I think this project deserves a level XXXXXX because ...
 
-Features Added:
-See CHANGELOG.md for features.
+See ./README.md for writeup.
+See ./CHANGELOG.md for features added.
+
 ---------------------------------------------------------------------------------------
 """
 
