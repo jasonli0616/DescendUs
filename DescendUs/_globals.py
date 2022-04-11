@@ -39,9 +39,33 @@ class Font:
     TITLE_FONT = pygame.font.Font(os.path.join(Game.ASSETS_DIR, 'RubikGlitch-Regular.ttf'), 100)
     TEXT_FONT = pygame.font.Font(os.path.join(Game.ASSETS_DIR, 'Oswald-Light.ttf'), 30)
 
-
 class Earth:
     REGULAR_POSITION = (0, 450)
     WON_POSITION = (0, 300)
 
     earth = None
+
+class Music:
+    BACKGROUND_MUSIC_PATH = os.path.join(Game.ASSETS_DIR, 'music.ogg')
+    START_SFX_PATH = os.path.join(Game.ASSETS_DIR, 'start_sfx.ogg')
+
+    WIN_SFX_PATH = os.path.join(Game.ASSETS_DIR, 'win_sfx.ogg')
+    LOSE_SFX_PATH = os.path.join(Game.ASSETS_DIR, 'lose_sfx.ogg')
+
+    def play(music_path, infinite=False):
+        """
+        Play a song.
+
+        Parameters
+        ----------
+        music_path
+            file path to play,
+            can be passed from DescendUs._globals.Music
+
+        infinite: bool
+            whether to play infinitely, or once
+        """
+
+        pygame.mixer.music.stop()
+        pygame.mixer.music.load(music_path)
+        pygame.mixer.music.play(loops = -1 if infinite else 0)
