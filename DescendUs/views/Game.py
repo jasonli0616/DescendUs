@@ -13,6 +13,8 @@ class Game:
         self.rect = pygame.Rect(0, 0, _globals.Window.WIDTH, _globals.Window.HEIGHT)
         self.background = pygame.image.load(os.path.join(_globals.Game.ASSETS_DIR, 'background.png'))
 
+        _globals.Music.play(_globals.Music.START_SFX_PATH)
+
 
     def show(self, surface: pygame.Surface):
         """
@@ -27,6 +29,10 @@ class Game:
 
         # Set background
         surface.blit(self.background, (0, 0))
+
+        # Play music
+        if not pygame.mixer.music.get_busy():
+            _globals.Music.play(_globals.Music.BACKGROUND_MUSIC_PATH, infinite=True)
 
         self._draw(surface)
         self._handle_event()
@@ -113,6 +119,7 @@ class Game:
             # Handle play again
             try:
                 if self.play_again_button.is_pressed(ev):
+                    pygame.mixer.music.unload()
                     self.clear_global_variables()
                     _globals.Game.view = views.Homepage()
                     return
@@ -152,10 +159,10 @@ class Game:
             _globals.Game.km_to_earth -= 1 / _globals.Window.FPS
 
         if _globals.Game.km_to_earth <= 0:
-            self.win()
+            self._win()
 
         if self.player.has_died():
-            self.lose()
+            self._lose()
 
 
     def _generate_collidable(self):
@@ -185,19 +192,25 @@ class Game:
                 return objects.Collidable.Ammo( (random.randint(0, _globals.Window.WIDTH), _globals.Window.HEIGHT) )
 
 
-    def win(self):
+    def _win(self):
         """
         Handle game win.
         """
+
+        if not _globals.Game.won:
+            _globals.Music.play(_globals.Music.WIN_SFX_PATH)
 
         _globals.Game.km_to_earth = 0
         _globals.Game.won = True
 
 
-    def lose(self):
+    def _lose(self):
         """
         Handle game loss.
         """
+
+        if not _globals.Game.lost:
+            _globals.Music.play(_globals.Music.LOSE_SFX_PATH)
 
         _globals.Game.hp = 0
         _globals.Game.lost = True
