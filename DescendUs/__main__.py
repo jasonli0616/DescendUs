@@ -8,8 +8,8 @@ Created:     4-Apr-2022
 Completed:   10-Apr-2022
 ---------------------------------------------------------------------------------------
 
-See ./README.md for writeup.
-See ./CHANGELOG.md for features added.
+See README.md for writeup.
+See CHANGELOG.md for features added.
 
 ---------------------------------------------------------------------------------------
 """
